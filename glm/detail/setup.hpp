@@ -344,12 +344,12 @@
 #define GLM_HAS_TRIVIAL_QUERIES 0
 
 //
-#if GLM_LANG & GLM_LANG_CXX11_FLAG
+#if GLM_LANG & GLM_LANG_CXX11_FLAG && GLM_COMPILER != GLM_COMPILER_CUDA_RTC
 #	define GLM_HAS_MAKE_SIGNED 1
 #else
 #	define GLM_HAS_MAKE_SIGNED ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
 		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA)) || \
+		((GLM_COMPILER & GLM_COMPILER_CUDA)) && GLM_COMPILER != GLM_COMPILER_CUDA_RTC || \
 		((GLM_COMPILER & GLM_COMPILER_HIP))))
 #endif
 
@@ -604,6 +604,29 @@ namespace std {
 
 	using ::std::make_unsigned;
 	///////////////////////////////////////////////////////////////////////////////
+} //namespace std
+} //namespace glm
+
+#endif
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+// RTC
+
+#if GLM_COMPILER==GLM_COMPILER_CUDA_RTC
+namespace glm {
+namespace std {
+	using size_t   = unsigned int;
+	
+	using int8_t   = signed char;
+	using int16_t  = short;
+	using int32_t  = int ;
+	using int64_t  = long long;
+	using uint8_t  = unsigned char;
+	using uint16_t = unsigned short;
+	using uint32_t = unsigned int;
+	using uint64_t = unsigned long long;
 } //namespace std
 } //namespace glm
 

@@ -124,7 +124,7 @@
 
 // CUDA
 #elif defined(__CUDACC__)
-#	if !defined(CUDA_VERSION) && !defined(GLM_FORCE_CUDA)
+#	if !defined(CUDA_VERSION) && !defined(GLM_FORCE_CUDA) && !defined(__CUDACC_RTC__)
 #		include <cuda.h>  // make sure version is defined since nvcc does not define it itself!
 #	endif
 #	if defined(__CUDACC_RTC__)
