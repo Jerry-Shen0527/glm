@@ -67,15 +67,19 @@ namespace detail
 }//namespace detail
 
 	// pow
+#if GLM_HAS_CXX11_STL
 	using std::pow;
+#endif
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> pow(vec<L, T, Q> const& base, vec<L, T, Q> const& exponent)
 	{
 		return detail::functor2<vec, L, T, Q>::call(pow, base, exponent);
 	}
 
-	// exp
+	// 
+#if GLM_HAS_CXX11_STL
 	using std::exp;
+#endif
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> exp(vec<L, T, Q> const& x)
 	{
@@ -83,7 +87,9 @@ namespace detail
 	}
 
 	// log
-	using std::log;
+#if GLM_HAS_CXX11_STL
+        using std::log;
+#endif
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> log(vec<L, T, Q> const& x)
 	{
@@ -123,7 +129,9 @@ namespace detail
 	}
 
 	// sqrt
+#if GLM_HAS_CXX11_STL
 	using std::sqrt;
+#endif
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> sqrt(vec<L, T, Q> const& x)
 	{

@@ -164,11 +164,11 @@
 // N1720
 #if GLM_COMPILER & GLM_COMPILER_CLANG
 #	define GLM_HAS_STATIC_ASSERT __has_feature(cxx_static_assert)
-#elif GLM_LANG & GLM_LANG_CXX11_FLAG
+#elif GLM_LANG & GLM_LANG_CXX11_FLAG && GLM_COMPILER != GLM_COMPILER_CUDA_RTC
 #	define GLM_HAS_STATIC_ASSERT 1
 #else
 #	define GLM_HAS_STATIC_ASSERT ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_CUDA)) || \
+		((GLM_COMPILER & GLM_COMPILER_CUDA)) && GLM_COMPILER != GLM_COMPILER_CUDA_RTC || \
 		((GLM_COMPILER & GLM_COMPILER_VC)) || \
 		((GLM_COMPILER & GLM_COMPILER_HIP))))
 #endif
@@ -430,6 +430,8 @@
 #	define GLM_STATIC_ASSERT(x, message) static_assert(x, message)
 #elif GLM_COMPILER & GLM_COMPILER_VC
 #	define GLM_STATIC_ASSERT(x, message) typedef char __CASSERT__##__LINE__[(x) ? 1 : -1]
+#elif GLM_COMPILER == GLM_COMPILER_CUDA_RTC
+#	define GLM_STATIC_ASSERT(x, message)
 #else
 #	define GLM_STATIC_ASSERT(x, message) assert(x)
 #endif//GLM_LANG
@@ -615,6 +617,7 @@ namespace std {
 // RTC
 
 #if GLM_COMPILER==GLM_COMPILER_CUDA_RTC
+#include <cuda/std/cmath>
 namespace glm {
 namespace std {
 	using size_t   = unsigned int;
@@ -628,6 +631,7 @@ namespace std {
 	using uint32_t = unsigned int;
 	using uint64_t = unsigned long long;
 } //namespace std
+	using ::cuda::std::sqrt;
 } //namespace glm
 
 #endif
