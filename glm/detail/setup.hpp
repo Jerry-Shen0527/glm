@@ -632,6 +632,7 @@ namespace std {
 	using uint64_t = unsigned long long;
 } //namespace std
 	using ::cuda::std::sqrt;
+	using ::cuda::std::pow;
 } //namespace glm
 
 #endif
