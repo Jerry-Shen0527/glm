@@ -152,7 +152,7 @@
 #	else
 #		define GLM_HAS_CXX11_STL 0
 #	endif
-#elif GLM_LANG & GLM_LANG_CXX11_FLAG
+#elif GLM_LANG & GLM_LANG_CXX11_FLAG || GLM_COMPILER & GLM_COMPILER_CUDA
 #	define GLM_HAS_CXX11_STL 1
 #else
 #	define GLM_HAS_CXX11_STL ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
@@ -630,6 +630,9 @@ namespace std {
 	using uint16_t = unsigned short;
 	using uint32_t = unsigned int;
 	using uint64_t = unsigned long long;
+
+        template<typename T>
+	using numeric_limits = ::cuda::std::numeric_limits<T>;
 } //namespace std
 	using ::cuda::std::sqrt;
 	using ::cuda::std::pow;
