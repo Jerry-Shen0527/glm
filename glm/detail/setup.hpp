@@ -636,6 +636,7 @@ namespace std {
 } //namespace std
 	using ::cuda::std::sqrt;
 	using ::cuda::std::pow;
+	using ::cuda::std::exp;
 } //namespace glm
 
 #endif
