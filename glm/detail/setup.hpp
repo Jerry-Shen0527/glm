@@ -635,6 +635,7 @@ namespace std {
 	using numeric_limits = ::cuda::std::numeric_limits<T>;
 } //namespace std
 	using ::cuda::std::sqrt;
+	using ::cuda::std::log;
 	using ::cuda::std::pow;
 	using ::cuda::std::exp;
 } //namespace glm

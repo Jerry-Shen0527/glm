@@ -36,7 +36,7 @@ namespace detail
 	{
 		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& x)
 		{
-			return detail::functor1<vec, L, T, T, Q>::call(std::sqrt, x);
+			return detail::functor1<vec, L, T, T, Q>::call(sqrt, x);
 		}
 	};
 
